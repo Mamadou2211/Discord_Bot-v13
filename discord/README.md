@@ -1,6 +1,5 @@
-# Discord.js v13 Simple Ticket bot | Quick.db
+# Discord.js v13
 ### Features
-- Slash Commands
 - Buttons
 - Quick.db
 
@@ -8,16 +7,6 @@
 ```
 npm install
 ```
-
-## How to use?
-**You can fork the repl [here](https://replit.com/@CodyDimensions/Discordjs-v13-Ticket-bot-or-Quickdb)**
-
-**Clone the repositories:**
-``` 
-git clone https://github.com/CodyDimensions/Discord.js-v13-Ticket-bot-Quick.db
-```
-
-
 ### Subscribe our YouTube Channel
 [Cody Dimensions Youtube channel](https://www.youtube.com/channel/UChCwEZuaY3fsYRLp5WZ3ZJg)
 Remember to like and share our videos!
