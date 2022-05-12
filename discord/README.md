@@ -7,6 +7,9 @@
 ```
 npm install
 ```
+```
+Add Your Token In .env + Your Prefix In config.json
+```
 ### Subscribe our YouTube Channel
 [Cody Dimensions Youtube channel](https://www.youtube.com/channel/UChCwEZuaY3fsYRLp5WZ3ZJg)
 Remember to like and share our videos!
