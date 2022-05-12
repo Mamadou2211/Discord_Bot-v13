@@ -1,0 +1,78 @@
+const { MessageEmbed } = require('discord.js');
+
+module.exports = {
+    name: 'kick',
+    aliases: ["k"],
+    permissions: ["KICK_MEMBERS"],
+    description: 'Kick a user from the server. ',
+    run: async(client, message, args) => {
+        const mentionedMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]) 
+        const reason = args.slice(1).join(' ')
+        if(!mentionedMember) return message.reply('**Please specify a member!**').then(msg => {
+    setTimeout(() => {
+    msg.delete();
+    }, 3000);
+    })  
+    }
+
+        if(!message.member.permissions.has('KICK_MEMBERS')) {
+            const ke = new MessageEmbed()
+            .setDescription("**You don't have permissions to kick members!**")
+            return message.channel.send({ embeds: [ke] }).then(msg => {
+    setTimeout(() => {
+    msg.delete();
+    }, 3000);
+    })  
+    }
+
+        } else if(!message.guild.me.permissions.has('KICK_MEMBER')) { //if bot don't have kick member permission then
+            const kickError1 = new MessageEmbed()
+            .setDescription('**I don\'t have permissions to kick members!**')
+            return message.channel.send({ embeds: [kickError1] }).then(msg => {
+    setTimeout(() => {
+    msg.delete();
+    }, 3000);
+    })  
+    }
+
+        const mentionedPosition = mentionedMember.roles.highest.position 
+        const memberPosition = message.member.roles.highest.position 
+        const botPosition = message.guild.me.roles.highest.position 
+
+        if(memberPosition <= mentionedPosition) {
+            const Err = new MessageEmbed()
+            .setDescription("You cannot kick this member because their role is higher/equal to your's")
+            return message.channel.send({ embeds: [err] }).then(msg => {
+    setTimeout(() => {
+    msg.delete();
+    }, 3000);
+    })  
+    }
+        } else if (botPosition <= mentionedPosition) { 
+            const Err1 = new MessageEmbed()
+            .setDescription("I cannot kick this member because their role is higher/equal to mine's")
+            message.channel.send({ embeds: [err1] }).then(msg => {
+    setTimeout(() => {
+    msg.delete();
+    }, 3000);
+    })  
+    }
+        }
+
+        try{
+            const dm = new MessageEmbed() 
+            .setTitle(`You were kicked by ${message.author.tag}!`)
+            .setDescription(`Reason: ${reason}`)
+            await mentionedMember.send({ embeds: [dm] })
+            await mentionedMember.kick().then(() => { 
+                
+                const ks = new MessageEmbed()
+                .setTitle(`${mentionedMember.user.tag} was kicked\n by ${message.author.tag}`)
+                .setDescription(`Reason: ${reason}`)
+                message.channel.send({ embeds: [ks] })
+            })
+
+
+        } 
+    }
+}
